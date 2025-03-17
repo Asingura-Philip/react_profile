@@ -18,7 +18,7 @@ function App() {
       <PersonalDetails/>
       <Content/>
       <Table/>
-      <hr />
+      
       <Links/>
       <ContactSection/>
     </div>
@@ -129,8 +129,13 @@ function Table(){
           </tr>
         </tbody>
       </table>
+      <hr />
     </>
   )
 }
 
+// credentials stored in datafile
+// login page for profile
+// year,semeseter,all courseunits
+// bonus for having text fields
 export default App;
