@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 
-const Login = () => {
-  // Array of users (simulating a user database)
-  const users = [
-    { email: 'usera@example.com', password: 'password123' },
-    { email: 'userb@example.com', password: 'password456' },
-  ];
-
-  // State to handle form input and error message
+const Login = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -15,15 +8,19 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check if the email and password match any user in the array
+    // Hardcoded credentials
+    const users = [
+      { email: 'user1@example.com', password: 'password123' },
+      { email: 'user2@example.com', password: 'password456' },
+    ];
+
     const user = users.find(
       (user) => user.email === email && user.password === password
     );
 
     if (user) {
       // Login successful
-      alert('Login successful!');
-      setErrorMessage('');
+      onLoginSuccess(); // Call onLoginSuccess from App to update login status
     } else {
       // Login failed
       setErrorMessage('Invalid email or password.');
@@ -56,7 +53,6 @@ const Login = () => {
         </div>
         <button type="submit">Login</button>
       </form>
-
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
     </div>
   );
