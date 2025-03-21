@@ -71,11 +71,18 @@ export function Links(){
 }
 
 export function Table(){
-    
-  return(
+  const courses = [
+    { coursename: "Understanding Old Testament", grade: 4.0 },
+    { coursename: "Writing and study skills", grade: 4.0 },
+    { coursename: "Fundamentals in computing", grade: 4.0 },
+    { coursename: "Essentials in hardware", grade: 4.0 },
+    { coursename: "Structured programming", grade: 4.0 },
+    { coursename: "Discrete Math", grade: 4.0 },
+  ];
+  return (
     <>
-    <h2>Results table</h2>
-    <table style={{ border: '2px solid black' }}>
+      <h2>Results table</h2>
+      <table style={{ border: '2px solid black' }}>
         <thead>
           <tr>
             <th>Courseunit</th>
@@ -83,34 +90,17 @@ export function Table(){
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Understanding Old Testament</td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>Writing and study skills</td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>Fundamentals in computing</td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>Essentials in hardware</td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>Structured programming</td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>Discrete Math</td>
-            <td>4.0</td>
-          </tr>
+          {/* Map over the array of courses to create rows dynamically */}
+          {courses.map((course, index) => (
+            <tr key={index}>
+              <td>{course.coursename}</td>
+              <td>{course.grade}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <hr />
     </>
-  )
+  );
 }
 
