@@ -1,38 +1,53 @@
 import React, { useState } from 'react';
-import {Route,Router} from 'react-router-dom'
-import {Intro, Content, PersonalDetails,ContactSection,Links,Table} from './components/components';
-import Login from './pages/login';
-
-
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Use BrowserRouter for routing
+import { Intro, Content, PersonalDetails, ContactSection, Links, Table } from './components/components';
+import Login from './pages/login'; 
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
 
-  return (
-    <div className={`App ${darkMode ? 'dark' : ''}`}>
-      <button id="dark-mode-toggle" onClick={toggleDarkMode}>
-        {darkMode ? 'Light Mode' : 'Dark Mode'}
-      </button>
+  
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true); 
+  };
 
-      
-      <Intro/>
-      <PersonalDetails/>
-      <Content/>
-      <Table/>
-      <Links/>
-      <ContactSection/>
-    </div>
+  return (
+    <Router>
+      <div className={`App ${darkMode ? 'dark' : ''}`}>
+        <button id="dark-mode-toggle" onClick={toggleDarkMode}>
+          {darkMode ? 'Light Mode' : 'Dark Mode'}
+        </button>
+
+        
+        <Routes>
+          
+          <Route
+            path="/"
+            element={isLoggedIn ? <Navigate to="/home" /> : <Login onLoginSuccess={handleLoginSuccess} />}
+          />
+          
+          <Route
+            path="/home"
+            element={
+              <>
+                <Intro />
+                <PersonalDetails />
+                <Content />
+                <Table />
+                <Links />
+                <ContactSection />
+              </>
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
-
-
-// credentials stored in datafile
-// login page for profile
-// year,semeseter,all courseunits
-// bonus for having text fields
 export default App;
