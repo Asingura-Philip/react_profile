@@ -23,7 +23,6 @@ function App() {
       <PersonalDetails/>
       <Content/>
       <Table/>
-      
       <Links/>
       <ContactSection/>
     </div>
