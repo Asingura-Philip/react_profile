@@ -17,36 +17,7 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className={`App ${darkMode ? 'dark' : ''}`}>
-        <button id="dark-mode-toggle" onClick={toggleDarkMode}>
-          {darkMode ? 'Light Mode' : 'Dark Mode'}
-        </button>
-
-        
-        <Routes>
-          
-          <Route
-            path="/"
-            element={isLoggedIn ? <Navigate to="/home" /> : <Login onLoginSuccess={handleLoginSuccess} />}
-          />
-          
-          <Route
-            path="/home"
-            element={
-              <>
-                <Intro />
-                <PersonalDetails />
-                <Content />
-                <Table />
-                <Links />
-                <ContactSection />
-              </>
-            }
-          />
-        </Routes>
-      </div>
-    </Router>
+    
   );
 }
 
